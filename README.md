@@ -1,2 +1,3 @@
 # Finance_Tracker
-Tool that automatically pulls transactions for budgeting purposes 
+# GIT test: 10/14
+Tool that automatically pulls transactions for budgeting purposes
