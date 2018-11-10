@@ -12,7 +12,6 @@ def main():
 
 
 main()'''
-
 import ofxclient
 from pprint import pprint
 from ofxclient import institution
@@ -23,18 +22,22 @@ your_password = 'ihatecandy'
  # yeah I know, you can't pass the 'pass' in
 # the constructor.. I'm lame and maybe I'll fix
 # it later
-institution = ofxclient.Institution(
+'''institution = ofxclient.Institution(
     id = ofxhome_id,
     username = your_username
-)
-inst = Institution(
+)'''
+
+inst = ofxclient.Institution(
         id = '031176110',
         org = '	ING DIRECT',
         url = 'https://ofx.capitalone360.com/OFX/ofx.html',
+        # dummy username and password - test authentication 
         username = 'genewilder',
         password = 'ihatecandy'
 )
-institution.password = your_password
+inst.password = your_password
+# work to use access code instead of username / password combo: 11/10/2018
+inst.authenticate([inst.username,inst.password])
 
 # You HAVE to call save() but only just once. Calling save
 # repeatedly won't hurt anything.
@@ -43,8 +46,9 @@ institution.password = your_password
 #
 # save() triggers saving of cache information (see ~/.ofxclient) as well
 # as a config file (see ~/.ofxclient.conf)
-institution.save()
-accounts = institution.accounts()
+#institution.save()
+accounts = inst.accounts()
+print(accounts)
 
 
 # returns an ofxparse.Statement object
