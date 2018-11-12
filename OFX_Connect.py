@@ -31,13 +31,14 @@ inst = ofxclient.Institution(
         id = '031176110',
         org = '	ING DIRECT',
         url = 'https://ofx.capitalone360.com/OFX/ofx.html',
-        # dummy username and password - test authentication 
-        username = 'genewilder',
-        password = 'ihatecandy'
+        # dummy username and password - test authentication
+        username = 'user',
+        password = 'pass'
 )
 inst.password = your_password
 # work to use access code instead of username / password combo: 11/10/2018
-inst.authenticate([inst.username,inst.password])
+#inst.authenticate([inst.username,inst.password])
+inst.accounts()
 
 # You HAVE to call save() but only just once. Calling save
 # repeatedly won't hurt anything.
@@ -46,19 +47,20 @@ inst.authenticate([inst.username,inst.password])
 #
 # save() triggers saving of cache information (see ~/.ofxclient) as well
 # as a config file (see ~/.ofxclient.conf)
-#institution.save()
+inst.save()
 accounts = inst.accounts()
 print(accounts)
+print("Accounts printed")
 
 
 # returns an ofxparse.Statement object
 # see an the ofx.account.statement portion of their docs:
 # https://github.com/jseutter/ofxparse/blob/master/README
-statement = accounts[0].statement(days=5)
+# statement = accounts[0].statement(days=5)
 
 
 # get the balance
-print ("balance: %s" % statement.balance)
+#print ("balance: %s" % statement.balance)
 accounts = inst.accounts()
 for a in accounts:
     # a StringIO wrapped string of the raw OFX download
